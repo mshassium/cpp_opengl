@@ -14,7 +14,7 @@ void drawLine(int x0, int y0, int x1, int y1, TGAImage &tgaImage, TGAColor color
 	}
 }
 
-int main(int argc, char **argv)
+int main(void)
 {
 	TGAImage image(100, 100, TGAImage::RGB);
 	drawLine(13, 20, 80, 40, image, white);
