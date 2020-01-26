@@ -7,7 +7,7 @@
 const TGAColor white = TGAColor(255, 255, 255, 255);
 const TGAColor red = TGAColor(255, 0, 0, 255);
 Model *model = NULL;
-const int width  = 800;
+const int width = 800;
 const int height = 800;
 
 void drawLine(int x0, int y0, int x1, int y1, TGAImage &tgaImage, TGAColor color)
@@ -20,7 +20,6 @@ void drawLine(int x0, int y0, int x1, int y1, TGAImage &tgaImage, TGAColor color
 		std::swap(x1, y1);
 		transpose = true;
 	}
-
 	if (x0 > x1)
 	{
 		std::swap(x0, x1);
@@ -46,15 +45,15 @@ void drawLine(int x0, int y0, int x1, int y1, TGAImage &tgaImage, TGAColor color
 		if (error2 > dx)
 		{
 			y += (y1 > y0 ? 1 : -1);
-			error2 -= dx*2;
+			error2 -= dx * 2;
 		}
 	}
 }
 
 int main(void)
 {
-	model = new Model("obj/african_head.obj");
-	TGAImage image(100, 100, TGAImage::RGB);
+	model = new Model("obj/minicouper.obj");
+	TGAImage image(width, height, TGAImage::RGB);
 	for (int i=0; i<model->nfaces(); i++) {
         std::vector<int> face = model->face(i);
         for (int j=0; j<3; j++) {
@@ -67,7 +66,9 @@ int main(void)
             drawLine(x0, y0, x1, y1, image, white);
         }
     }
+
 	image.flip_vertically(); // i want to have the origin at the left bottom corner of the image
-	image.write_tga_file("output1.tga");
+	image.write_tga_file("output.tga");
+	delete model;
 	return 0;
 }
